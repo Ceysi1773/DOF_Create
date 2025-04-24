@@ -97,10 +97,11 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM4_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_OnePulse_Start(&htim1, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1 );
-//  HAL_TIM_Base_Start(&htim2);
+  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
 
   /* USER CODE END 2 */
 
@@ -108,6 +109,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  DCR_Geterate ();
 	  if (TIM1->SR & TIM_SR_TIF)
 	  {
 		  TIM1->SR &=~TIM_SR_TIF;
