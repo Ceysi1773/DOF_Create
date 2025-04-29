@@ -1,0 +1,2 @@
+../Core/Src/My_Project/RISING_PHOTON.c:15:6:HAL_TIM_TriggerCallback	16	static
+../Core/Src/My_Project/RISING_PHOTON.c:23:6:HAL_TIM_PeriodElapsedCallback	16	static

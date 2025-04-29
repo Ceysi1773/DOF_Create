@@ -30,7 +30,7 @@ Core/Src/My_Project/DCR_SIGNAL.o: ../Core/Src/My_Project/DCR_SIGNAL.c \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rng.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
- ../Core/Inc/rng.h ../Core/Inc/main.h ../Core/Inc/tim.h
+ ../Core/Inc/rng.h ../Core/Inc/main.h ../Core/Inc/tim.h ../Core/Inc/DCR.h
 ../Core/Inc/main.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -66,3 +66,4 @@ Core/Src/My_Project/DCR_SIGNAL.o: ../Core/Src/My_Project/DCR_SIGNAL.c \
 ../Core/Inc/rng.h:
 ../Core/Inc/main.h:
 ../Core/Inc/tim.h:
+../Core/Inc/DCR.h:

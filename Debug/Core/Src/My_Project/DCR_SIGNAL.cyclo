@@ -1,2 +1,2 @@
-../Core/Src/My_Project/DCR_SIGNAL.c:17:10:RNG_GetValue	2
-../Core/Src/My_Project/DCR_SIGNAL.c:28:6:DCR_Geterate	2
+../Core/Src/My_Project/DCR_SIGNAL.c:15:10:RNG_GetValue	2
+../Core/Src/My_Project/DCR_SIGNAL.c:24:6:DCR_Geterate	1

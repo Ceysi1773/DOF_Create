@@ -1,6 +1,7 @@
 "./Core/Src/My_Project/DCR_SIGNAL.o"
 "./Core/Src/My_Project/RISING_PHOTON.o"
 "./Core/Src/My_Project/USART_PC.o"
+"./Core/Src/My_Project/math.o"
 "./Core/Src/gpio.o"
 "./Core/Src/main.o"
 "./Core/Src/memorymap.o"

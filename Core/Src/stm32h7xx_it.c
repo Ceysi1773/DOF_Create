@@ -55,7 +55,8 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim4;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -197,6 +198,36 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32h7xx.s).                    */
 /******************************************************************************/
+
+/**
+  * @brief This function handles TIM1 trigger and commutation interrupts.
+  */
+void TIM1_TRG_COM_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM1_TRG_COM_IRQn 0 */
+	__HAL_TIM_CLEAR_FLAG(&htim1, TIM_FLAG_TRIGGER);
+	HAL_TIM_TriggerCallback(&htim1);
+  /* USER CODE END TIM1_TRG_COM_IRQn 0 */
+//  HAL_TIM_IRQHandler(&htim1);
+  /* USER CODE BEGIN TIM1_TRG_COM_IRQn 1 */
+
+  /* USER CODE END TIM1_TRG_COM_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM4 global interrupt.
+  */
+void TIM4_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM4_IRQn 0 */
+	__HAL_TIM_CLEAR_FLAG(&htim4, TIM_FLAG_UPDATE);
+	HAL_TIM_PeriodElapsedCallback (&htim4);
+  /* USER CODE END TIM4_IRQn 0 */
+//  HAL_TIM_IRQHandler(&htim4);
+  /* USER CODE BEGIN TIM4_IRQn 1 */
+
+  /* USER CODE END TIM4_IRQn 1 */
+}
 
 /* USER CODE BEGIN 1 */
 

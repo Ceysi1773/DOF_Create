@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "DCR.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,7 +58,7 @@ static void MPU_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+DCR_Setting DCR;
 /* USER CODE END 0 */
 
 /**
@@ -97,11 +97,26 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM4_Init();
-  MX_TIM3_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_OnePulse_Start(&htim1, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+  /*Программа которую необходимо выполнить до основного цикла работы устройства*/
+  math(&DCR);//Функция, в которой осуществляется установка DCR параметров
+  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);//Запускаем имитацию фотонов
+  HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_1);//Запускаем PWM для DCR.
+  __HAL_TIM_CLEAR_FLAG(&htim1, TIM_SR_TIF | TIM_SR_UIF);
+  __HAL_TIM_CLEAR_FLAG(&htim4, TIM_SR_UIF);
+  HAL_TIM_OnePulse_Start(&htim1, TIM_CHANNEL_1);/* /Запускаем режим ONE PULSE. Мы это делаем
+  один раз, поэтому не критична задержка HAL - функции.
+//  TIM1->CCER 	= TIM_CCER_CC1E;Заранее активируем канал TIM1, чтобы при возникновении
+  триггера импульс формировался сразу*/
+
+  TIM1->DIER	|= TIM_DIER_TIE;/*Разрешаем прерывание, по триггеру*/
+  TIM4->DIER	|= TIM_DIER_UIE;/*Разрешаем работу по переполнению таймер. Задает
+								 Мертвое время*/
+  /*Конец программы*/
+
+
+
 
   /* USER CODE END 2 */
 
@@ -109,22 +124,26 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  DCR_Geterate ();
-	  if (TIM1->SR & TIM_SR_TIF)
-	  {
-		  TIM1->SR &=~TIM_SR_TIF;
-		  TIM1->BDTR &= ~TIM_BDTR_MOE;
-//		  HAL_TIM_Base_Start(&htim4);
-		  TIM4->CR1 = TIM_CR1_CEN;
-	  }
-	  if (TIM4->SR & TIM_SR_UIF)
-	  {
-		  TIM4->SR &=~TIM_SR_UIF;
-		  TIM1->BDTR |= TIM_BDTR_MOE;
-//		  HAL_TIM_Base_Stop(&htim4);
-		  TIM4->CR1 &= ~TIM_CR1_CEN;
-		  TIM4->CNT = 0;
-	  }
+	  DCR_Geterate (&DCR);//Функция, которая постоянно формируем DCR
+	  HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_8);
+	  HAL_Delay(100);
+
+//	  if (TIM1->SR & TIM_SR_TIF)
+//	  {
+//		  TIM1->SR &=~TIM_SR_TIF;
+//		  TIM1->BDTR &= ~TIM_BDTR_MOE;
+//
+////		  HAL_TIM_Base_Start(&htim4);
+//		  TIM4->CR1 = TIM_CR1_CEN;
+//	  }
+//	  if (TIM4->SR & TIM_SR_UIF)
+//	  {
+//		  TIM4->SR &=~TIM_SR_UIF;
+//		  TIM1->BDTR |= TIM_BDTR_MOE;
+////		  HAL_TIM_Base_Stop(&htim4);
+//		  TIM4->CR1 &= ~TIM_CR1_CEN;
+//		  TIM4->CNT = 0;
+//	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

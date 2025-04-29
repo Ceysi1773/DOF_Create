@@ -7,17 +7,20 @@
 C_SRCS += \
 ../Core/Src/My_Project/DCR_SIGNAL.c \
 ../Core/Src/My_Project/RISING_PHOTON.c \
-../Core/Src/My_Project/USART_PC.c 
+../Core/Src/My_Project/USART_PC.c \
+../Core/Src/My_Project/math.c 
 
 OBJS += \
 ./Core/Src/My_Project/DCR_SIGNAL.o \
 ./Core/Src/My_Project/RISING_PHOTON.o \
-./Core/Src/My_Project/USART_PC.o 
+./Core/Src/My_Project/USART_PC.o \
+./Core/Src/My_Project/math.o 
 
 C_DEPS += \
 ./Core/Src/My_Project/DCR_SIGNAL.d \
 ./Core/Src/My_Project/RISING_PHOTON.d \
-./Core/Src/My_Project/USART_PC.d 
+./Core/Src/My_Project/USART_PC.d \
+./Core/Src/My_Project/math.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -27,7 +30,7 @@ Core/Src/My_Project/%.o Core/Src/My_Project/%.su Core/Src/My_Project/%.cyclo: ..
 clean: clean-Core-2f-Src-2f-My_Project
 
 clean-Core-2f-Src-2f-My_Project:
-	-$(RM) ./Core/Src/My_Project/DCR_SIGNAL.cyclo ./Core/Src/My_Project/DCR_SIGNAL.d ./Core/Src/My_Project/DCR_SIGNAL.o ./Core/Src/My_Project/DCR_SIGNAL.su ./Core/Src/My_Project/RISING_PHOTON.cyclo ./Core/Src/My_Project/RISING_PHOTON.d ./Core/Src/My_Project/RISING_PHOTON.o ./Core/Src/My_Project/RISING_PHOTON.su ./Core/Src/My_Project/USART_PC.cyclo ./Core/Src/My_Project/USART_PC.d ./Core/Src/My_Project/USART_PC.o ./Core/Src/My_Project/USART_PC.su
+	-$(RM) ./Core/Src/My_Project/DCR_SIGNAL.cyclo ./Core/Src/My_Project/DCR_SIGNAL.d ./Core/Src/My_Project/DCR_SIGNAL.o ./Core/Src/My_Project/DCR_SIGNAL.su ./Core/Src/My_Project/RISING_PHOTON.cyclo ./Core/Src/My_Project/RISING_PHOTON.d ./Core/Src/My_Project/RISING_PHOTON.o ./Core/Src/My_Project/RISING_PHOTON.su ./Core/Src/My_Project/USART_PC.cyclo ./Core/Src/My_Project/USART_PC.d ./Core/Src/My_Project/USART_PC.o ./Core/Src/My_Project/USART_PC.su ./Core/Src/My_Project/math.cyclo ./Core/Src/My_Project/math.d ./Core/Src/My_Project/math.o ./Core/Src/My_Project/math.su
 
 .PHONY: clean-Core-2f-Src-2f-My_Project
 
